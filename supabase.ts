@@ -1,5 +1,5 @@
-import env from "./env.ts";
-import { supabase } from "../deps.ts";
+import env from "./config.ts";
+import { supabase } from "./deps.ts";
 
 const client = supabase(
   env["SUPABASE_URL"],

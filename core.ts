@@ -46,12 +46,12 @@ const polling = async () => {
 };
 
 export const launch = async () => {
-  switch (env["HOST"]) {
-    case "WEBHOOK":
+  switch (env["HOST"].toLowerCase()) {
+    case "webhook":
       await initializer();
       await webhook();
       break;
-    case "POLLING":
+    case "polling":
       await initializer();
       await polling();
       break;

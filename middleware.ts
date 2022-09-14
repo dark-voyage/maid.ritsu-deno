@@ -1,5 +1,10 @@
 import { Fuse } from "./deps.ts";
-import supabase from "./lib/supabase.ts";
+import supabase from "./supabase.ts";
+
+/*
+ * The Supabase Database has Users table
+ * The table has 3 rows: id | username | car
+ */
 
 export const getCars = async (cursor: number, limit = 10) => {
   const { data: Users, error } = await supabase
@@ -45,3 +50,13 @@ export const addCar = async (id: number, username: string, car: string) => {
   if (error) throw new Error(`${error.message} (hint: ${error.hint})`);
   return User;
 };
+
+export const renewCar = async (id: number, car: string) => {
+  const { data: User, error } = await supabase
+    .from("Users")
+    .update({ car })
+    .eq("id", id);
+
+  if (error) throw new Error(`${error.message} (hint: ${error.hint})`);
+  return User;
+}
