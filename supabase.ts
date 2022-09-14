@@ -4,6 +4,7 @@ import { supabase } from "./deps.ts";
 const client = supabase(
   env["SUPABASE_URL"],
   env["SUPABASE_KEY"],
+  null,
 );
 
 export default client;

@@ -1,16 +1,23 @@
 import { Fuse } from "./deps.ts";
 import supabase from "./supabase.ts";
 
+export interface User {
+  id: number;
+  username: string;
+  car: string;
+}
+
 /*
  * The Supabase Database has Users table
  * The table has 3 rows: id | username | car
  */
 
 export const getCars = async (cursor: number, limit = 10) => {
+  // @ts-ignore: Library compatibility issues
   const { data: Users, error } = await supabase
     .from("Users")
     .select("*")
-    .order("module")
+    .order("car")
     .range(cursor, cursor + limit - 1);
 
   if (error) throw new Error(`${error.message} (hint: ${error.hint})`);
@@ -18,6 +25,7 @@ export const getCars = async (cursor: number, limit = 10) => {
 };
 
 export const searchCarV1 = async (car: string) => {
+  // @ts-ignore: Library compatibility issues
   const { data: Users, error } = await supabase.from("Users").select("*").eq(
     "car",
     car,
@@ -27,11 +35,12 @@ export const searchCarV1 = async (car: string) => {
   return Users;
 };
 
-export const searchCarV2 = async (car: string) => {
+export const searchCarV2 = async (car: string): Promise<User[]> => {
+  // @ts-ignore: Library compatibility issues
   const { data: Users, error } = await supabase
     .from("Users")
     .select("*")
-    .order("module");
+    .order("car");
   // .range(cursor, cursor + limit - 1);
 
   if (error) throw new Error(`${error.message} (hint: ${error.hint})`);
@@ -41,6 +50,7 @@ export const searchCarV2 = async (car: string) => {
 };
 
 export const addCar = async (id: number, username: string, car: string) => {
+  // @ts-ignore: Library compatibility issues
   const { data: User, error } = await supabase.from("Users").insert([{
     id,
     username,
@@ -52,6 +62,7 @@ export const addCar = async (id: number, username: string, car: string) => {
 };
 
 export const renewCar = async (id: number, car: string) => {
+  // @ts-ignore: Library compatibility issues
   const { data: User, error } = await supabase
     .from("Users")
     .update({ car })

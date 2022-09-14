@@ -2,30 +2,19 @@ import { Composer, Context } from "../deps.ts";
 
 const composer = new Composer();
 
-export const message = `<b>Kitoblardan qidirishni boshlaymizmi?)</b>` +
+export const message = `<b>Welcome to our Car Finder</b>` +
   `\n` +
   `\n` +
-  `Qidirishni boshlash uchun, iltimos quyidaghi keltirilgan misol tartibida ` +
-  `qidirmoqchi bo'lgan kitob nomi yoki shunga yaqin kalit so'zlarini yozing:` +
+  `This bot helps you to find car owner's info that parked after your's.` +
+  `If you're just getting started, get started by registering!` +
   `\n` +
   `\n` +
-  `<code>/book bash</code>`;
+  `<code>/register</code>`;
 
-const regex = /book(.*)/ig;
-
-composer.hears(regex, async (ctx: Context): Promise<void> => {
-  const result = regex.exec(<string> ctx.match!)![1].trim();
-
-  if (!result) {
-    await ctx.reply(message, {
-      parse_mode: "HTML",
-    });
-  }
-
-  // search hook on API
-  const _search = await fetch(`https://some.api.uz/search/${result}`);
-
-  // TODO: Implement the book API explorer
+composer.command("start", async (ctx: Context): Promise<void> => {
+  await ctx.reply(message, {
+    parse_mode: "HTML",
+  });
 });
 
 export default composer;

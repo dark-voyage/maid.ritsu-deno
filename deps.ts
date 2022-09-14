@@ -16,5 +16,5 @@ export {
   yellow,
 } from "https://deno.land/std@0.125.0/fmt/colors.ts";
 export { config } from "https://deno.land/x/dotenv@v3.2.0/mod.ts";
-export { createClient as supabase } from "https://deno.land/x/supabase@1.3.1/mod.ts";
+export { createClient as supabase } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 export { default as Fuse } from "https://deno.land/x/fuse@v6.4.1/dist/fuse.esm.js";
