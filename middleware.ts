@@ -71,3 +71,16 @@ export const renewCar = async (id: number, car: string) => {
   if (error) throw new Error(`${error.message} (hint: ${error.hint})`);
   return User;
 };
+
+export const deleteCar = async (id: number) => {
+  // @ts-ignore: Library compatibility issues
+  const { data: User, error } = await supabase
+    .from("Users")
+    .delete()
+    .eq("id", id);
+
+  if (error) throw new Error(`${error.message} (hint: ${error.hint})`);
+  return User;
+}
+
+console.log(await searchCarV2("565"));
