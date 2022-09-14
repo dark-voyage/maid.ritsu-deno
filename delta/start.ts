@@ -28,5 +28,4 @@ composer.hears(regex, async (ctx: Context): Promise<void> => {
   // TODO: Implement the book API explorer
 });
 
-
 export default composer;

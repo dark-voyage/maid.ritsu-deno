@@ -59,4 +59,4 @@ export const renewCar = async (id: number, car: string) => {
 
   if (error) throw new Error(`${error.message} (hint: ${error.hint})`);
   return User;
-}
+};
